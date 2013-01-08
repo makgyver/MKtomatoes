@@ -33,14 +33,17 @@ public final class RTConstants {
 	public static final String BOX_OFFICE = "box_office";
 	public static final String CAST = "cast";
 	public static final String CLIPS = "clips";
+	public static final String ERROR = "error";
 	public static final String ID = "id";
 	public static final String IMDB = "imdb";
 	public static final String IN_THEATRES = "in_theatres";
 	public static final String JSON = ".json?";
 	public static final String LIMIT = "limit";
 	public static final String LISTS = "lists";
+	public static final String MALFORMED_URL = "Malformed URL.";
 	public static final String MOVIE_ALIAS = "movie_alias";
 	public static final String MOVIES = "movies";
+	public static final String NONE = "None";
 	public static final String OPENING = "opening";
 	public static final String PAGE = "page";
 	public static final String PAGE_LIMIT = "page_limit";
@@ -49,6 +52,9 @@ public final class RTConstants {
 	public static final String REVIEW_TYPE = "review_type";
 	public static final String SIMILAR = "similar";
 	public static final String SLASH = "/";
+	public static final String SUCCESS = "Success";
+	public static final String TIMEOUT = "Request Timeout.";
+	public static final String TOTAL = "total";
 	public static final String TYPE = "TYPE";
 	public static final String UPCOMING = "upcoming";
 	

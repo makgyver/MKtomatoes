@@ -85,14 +85,14 @@ public final class RTURLCreator {
 
 	//region Movies
 	
-	public static URL getMovieInformation(int movieID) throws MalformedURLException {
+	public static URL getMovieInformationUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.JSON + 
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
-	public static URL getMovieCast(int movieID) throws MalformedURLException {
+	public static URL getMovieCastUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -100,7 +100,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
-	public static URL getMovieClips(int movieID) throws MalformedURLException {
+	public static URL getMovieClipsUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -108,7 +108,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
-	public static URL getMovieReviews(int movieID) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -116,7 +116,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
-	public static URL getMovieReviews(int movieID, int page) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -125,7 +125,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
-	public static URL getMovieReviews(int movieID, int pageLimit, int page) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -135,7 +135,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));
 	}
 	
-	public static URL getMovieReviews(int movieID, RTReviewType type) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID, RTReviewType type) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -144,7 +144,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.REVIEW_TYPE, type.getValue())));
 	}
 	
-	public static URL getMovieReviews(int movieID, RTReviewType type, int page) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID, RTReviewType type, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -154,7 +154,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
-	public static URL getMovieReviews(int movieID, RTReviewType type, int pageLimit, int page) throws MalformedURLException {
+	public static URL getMovieReviewsUrl(int movieID, RTReviewType type, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -165,7 +165,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));
 	}
 	
-	public static URL getSimilarMovies(int movieID) throws MalformedURLException {
+	public static URL getSimilarMoviesUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -173,7 +173,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
-	public static URL getSimilarMovies(int movieID, int limit) throws MalformedURLException {
+	public static URL getSimilarMoviesUrl(int movieID, int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
 				String.valueOf(movieID) + RTConstants.SLASH +
@@ -182,7 +182,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.LIMIT, String.valueOf(limit))));
 	}
 	
-	public static URL getMovieByIMDbID(String imdbID) throws MalformedURLException {
+	public static URL getMovieByIMDbIDUrl(String imdbID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIE_ALIAS + RTConstants.JSON + 
 				pair(RTConstants.API_KEY, getApiKey()) +
@@ -190,7 +190,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.ID, String.valueOf(imdbID))));	
 	}
 	
-	public static URL getInTheatreMovies() throws MalformedURLException {
+	public static URL getInTheatreMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -198,7 +198,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
-	public static URL getInTheatreMovies(int page) throws MalformedURLException {
+	public static URL getInTheatreMoviesUrl(int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -207,7 +207,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));	
 	}
 	
-	public static URL getInTheatreMovies(int pageLimit, int page) throws MalformedURLException {
+	public static URL getInTheatreMoviesUrl(int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -217,7 +217,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));	
 	}
 	
-	public static URL getUpcomingMovies() throws MalformedURLException {
+	public static URL getUpcomingMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -225,7 +225,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
-	public static URL getUpcomingMovies(int page) throws MalformedURLException {
+	public static URL getUpcomingMoviesUrl(int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -234,7 +234,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));	
 	}
 	
-	public static URL getUpcomingMovies(int pageLimit, int page) throws MalformedURLException {
+	public static URL getUpcomingMoviesUrl(int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -244,7 +244,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));	
 	}
 	
-	public static URL getBoxOfficeMovies() throws MalformedURLException {
+	public static URL getBoxOfficeMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -252,7 +252,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
-	public static URL getBoxOfficeMovies(int limit) throws MalformedURLException {
+	public static URL getBoxOfficeMoviesUrl(int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -261,7 +261,7 @@ public final class RTURLCreator {
 				param(pair(RTConstants.LIMIT, String.valueOf(limit))));	
 	}
 	
-	public static URL getOpeningMovies() throws MalformedURLException {
+	public static URL getOpeningMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -269,7 +269,7 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
-	public static URL getOpeningMovies(int limit) throws MalformedURLException {
+	public static URL getOpeningMoviesUrl(int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -282,7 +282,7 @@ public final class RTURLCreator {
 	
 	//region Search Movies
 	
-	public static URL searchMoviesByTitle(String title) throws MalformedURLException {
+	public static URL searchMoviesByTitleUrl(String title) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL + 
 					RTConstants.MOVIES +
 				   	RTConstants.JSON +
@@ -290,7 +290,7 @@ public final class RTURLCreator {
 					param(pair(RTConstants.QUERY, title)));
 	}
 	
-	public static URL searchMoviesByTitle(String title, int page) throws MalformedURLException {
+	public static URL searchMoviesByTitleUrl(String title, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 					RTConstants.MOVIES +
 					RTConstants.JSON +
@@ -299,7 +299,7 @@ public final class RTURLCreator {
 					param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
-	public static URL searchMoviesByTitle(String title, int pageLimit, int page) throws MalformedURLException {
+	public static URL searchMoviesByTitleUrl(String title, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL + 
 					RTConstants.MOVIES +
 					RTConstants.JSON +
