@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 /**
- * Static class that offers methods for calling the imdbapi.org API.
+ * Static class that offers methods for calling the Rotten Tomatoes API.
  * 
  * @author Mirko Polato
  *
