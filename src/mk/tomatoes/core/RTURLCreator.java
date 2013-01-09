@@ -85,6 +85,13 @@ public final class RTURLCreator {
 
 	//region Movies
 	
+	/**
+	 * Returns the URL that gets the movie information.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieInformationUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -92,6 +99,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie cast.
+	 * 
+	 * @param movieID The movie ID
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 * @return The query URL
+	 */
 	public static URL getMovieCastUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -100,6 +114,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie clips list.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieClipsUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -108,6 +129,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -116,6 +144,14 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -125,6 +161,15 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -135,6 +180,14 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID, RTReviewType type) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -144,6 +197,15 @@ public final class RTURLCreator {
 				param(pair(RTConstants.REVIEW_TYPE, type.getValue())));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID, RTReviewType type, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -154,6 +216,16 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie reviews list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieReviewsUrl(int movieID, RTReviewType type, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -165,6 +237,13 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));
 	}
 	
+	/**
+	 * Returns the URL that gets the similar movies list.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getSimilarMoviesUrl(int movieID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -173,6 +252,14 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));
 	}
 	
+	/**
+	 * Returns the URL that gets the similar movies list.
+	 * 
+	 * @param movieID The movie ID
+	 * @param limit The maximum number of results
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getSimilarMoviesUrl(int movieID, int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIES + RTConstants.SLASH +
@@ -182,6 +269,13 @@ public final class RTURLCreator {
 				param(pair(RTConstants.LIMIT, String.valueOf(limit))));
 	}
 	
+	/**
+	 * Returns the URL that gets the movie information by its IMDb id.
+	 * 
+	 * @param imdbID The IMDB ID
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getMovieByIMDbIDUrl(String imdbID) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.MOVIE_ALIAS + RTConstants.JSON + 
@@ -190,6 +284,12 @@ public final class RTURLCreator {
 				param(pair(RTConstants.ID, String.valueOf(imdbID))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of movies playing in theatres.
+	 * 
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getInTheatreMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -198,6 +298,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of movies playing in theatres.
+	 * 
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getInTheatreMoviesUrl(int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -207,6 +314,14 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of movies playing in theatres.
+	 * 
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getInTheatreMoviesUrl(int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -217,6 +332,12 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of upcoming movies.
+	 * 
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getUpcomingMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -225,6 +346,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of upcoming movies.
+	 * 
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getUpcomingMoviesUrl(int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -234,6 +362,14 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE, String.valueOf(page))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the list of upcoming movies.
+	 * 
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getUpcomingMoviesUrl(int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -244,6 +380,12 @@ public final class RTURLCreator {
 				param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the box office movies list.
+	 * 
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getBoxOfficeMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -252,6 +394,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
+	/**
+	 * Returns the URL that gets the box office movies list.
+	 * 
+	 * @param limit The maximum number of results
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getBoxOfficeMoviesUrl(int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -261,6 +410,12 @@ public final class RTURLCreator {
 				param(pair(RTConstants.LIMIT, String.valueOf(limit))));	
 	}
 	
+	/**
+	 * Returns the URL that gets the opening movies list.
+	 * 
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getOpeningMoviesUrl() throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -269,6 +424,13 @@ public final class RTURLCreator {
 				pair(RTConstants.API_KEY, getApiKey()));	
 	}
 	
+	/**
+	 * Returns the URL that gets the opening movies list.
+	 * 
+	 * @param limit The maximum number of results
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL getOpeningMoviesUrl(int limit) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 				RTConstants.LISTS + RTConstants.SLASH +
@@ -282,6 +444,13 @@ public final class RTURLCreator {
 	
 	//region Search Movies
 	
+	/**
+	 * Returns the URL that searches movies by title.
+	 * 
+	 * @param title The movie title
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL searchMoviesByTitleUrl(String title) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL + 
 					RTConstants.MOVIES +
@@ -290,6 +459,14 @@ public final class RTURLCreator {
 					param(pair(RTConstants.QUERY, title)));
 	}
 	
+	/**
+	 * Returns the URL that searches movies by title.
+	 * 
+	 * @param title The movie title
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL searchMoviesByTitleUrl(String title, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL +
 					RTConstants.MOVIES +
@@ -299,6 +476,15 @@ public final class RTURLCreator {
 					param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
+	/**
+	 * Returns the URL that searches movies by title.
+	 * 
+	 * @param title The movie title
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The query URL
+	 * @throws MalformedURLException Throws if the URL has an invalid form
+	 */
 	public static URL searchMoviesByTitleUrl(String title, int pageLimit, int page) throws MalformedURLException {
 		return new URL(RTConstants.BASE_URL + 
 					RTConstants.MOVIES +

@@ -27,41 +27,98 @@ import mk.tomatoes.core.RTConstants;
 import mk.tomatoes.utils.Log;
 import net.sf.json.JSONObject;
 
+/**
+ * Class that represents a movie clip.
+ * 
+ * @author Mirko Polato
+ *
+ */
 public class RTClip extends RTEntity {
 
+	/**
+	 * The clip title.
+	 */
 	private String title;
+	
+	/**
+	 * The clip duration.
+	 */
 	private int duration;
+	
+	/**
+	 * The clip thumbnail.
+	 */
 	private URL thumbnail;
 	
+	/**
+	 * Creates a new RTClip instance based on the origin JSON object.
+	 * 
+	 * @param json The origin JSON object
+	 */
 	public RTClip(JSONObject json) {
 		super(json);
 		parseJSON(json);
 	}
 
+	/**
+	 * Gets the clip title.
+	 * 
+	 * @return The clip title
+	 */
 	public String getTitle() {
 		return title;
 	}
 	
+	/**
+	 * Sets the clip title.
+	 * 
+	 * @param title The new clip title
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	/**
+	 * Gets the clip duration.
+	 * 
+	 * @return The clip duration
+	 */
 	public int getDuration() {
 		return duration;
 	}
 	
+	/**
+	 * Sets the clip duration.
+	 * 
+	 * @param duration The clip duration
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	
+	/**
+	 * Gets the clip thumbnail.
+	 * 
+	 * @return The clip thumbnail
+	 */
 	public URL getThumbnail() {
 		return thumbnail;
 	}
 	
+	/**
+	 * Sets the clip thumbnail.
+	 * 
+	 * @param thumbnail The new clip thumbnail
+	 */
 	public void setThumbnail(URL thumbnail) {
 		this.thumbnail = thumbnail;
 	}
 
+	/**
+	 * Parses the origin JSON object.
+	 * 
+	 * @param json The origin JSON object
+	 */
 	private void parseJSON(JSONObject json) {
 		
 		if (json.has(RTConstants.TITLE)) setTitle(json.getString(RTConstants.TITLE));
