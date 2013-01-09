@@ -73,8 +73,8 @@ public final class RTAPI {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setReadTimeout(timeout);
-			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB;     rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			//conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB;     rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			for (String line = null; (line = reader.readLine()) != null;) {
 			    result.append(line).append("\n");
 			}
@@ -109,6 +109,7 @@ public final class RTAPI {
 	 * @return The JSONObject
 	 */
 	private static JSONObject toJSON(String strJson) {
+		strJson = strJson.substring(strJson.indexOf('{'));
 		return (JSONObject) JSONSerializer.toJSON(strJson);
 	}
 	
@@ -237,9 +238,9 @@ public final class RTAPI {
 		}
 	}
 	
-	public static RTResponseArray getInTheatreMovies(int movieID) {
+	public static RTResponseArray getInTheatreMovies() {
 		try {
-			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(movieID))));
+			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl())));
 			
 		} catch (MalformedURLException e) {
 			Log.print(e);
@@ -248,9 +249,40 @@ public final class RTAPI {
 		}
 	}
 	
-	public static RTResponseArray getInTheatreMovies(int movieID, int limit) {
+	public static RTResponseArray getInTheatreMovies(int page) {
 		try {
-			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(movieID, limit))));
+			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(page))));
+			
+		} catch (MalformedURLException e) {
+			Log.print(e);
+			
+			return new RTResponseArray(RTConstants.MALFORMED_URL);
+		}
+	}
+	
+	public static RTResponseArray getInTheatreMovies(int pageLimit, int page) {
+		try {
+			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(pageLimit, page))));
+			
+		} catch (MalformedURLException e) {
+			Log.print(e);
+			
+			return new RTResponseArray(RTConstants.MALFORMED_URL);
+		}
+	}
+	
+	public static RTResponseArray getAllInTheatreMovies() {
+		try {
+			RTResponseArray result = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(100, 1))));
+			
+			for (int p = 2; (p - 1) * 100 < result.getResults(); p++) {
+				RTResponseArray page = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(100, p))));
+				for (Object obj : page.getData()) {
+					result.addData((JSONObject) obj);
+				}
+			}
+			
+			return result;
 			
 		} catch (MalformedURLException e) {
 			Log.print(e);
@@ -296,7 +328,7 @@ public final class RTAPI {
 		try {
 			RTResponseArray result = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl(100, 1))));
 			
-			for (int p = 2; p < result.getResults(); p++) {
+			for (int p = 2; (p - 1) * 100 < result.getResults(); p++) {
 				RTResponseArray page = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl(100, p))));
 				for (Object obj : page.getData()) {
 					result.addData((JSONObject) obj);
@@ -425,7 +457,7 @@ public final class RTAPI {
 			
 			RTResponseArray result = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.searchMoviesByTitleUrl(title, 100, 1))));
 			
-			for (int p = 2; p < result.getResults(); p++) {
+			for (int p = 2; (p - 1) * 100 < result.getResults(); p++) {
 				RTResponseArray page = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.searchMoviesByTitleUrl(title, 100, p))));
 				for (Object obj : page.getData()) {
 					result.addData((JSONObject) obj);
