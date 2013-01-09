@@ -73,7 +73,7 @@ public final class RTAPI {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setReadTimeout(timeout);
-			//conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB;     rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
+			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB;     rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13 (.NET CLR 3.5.30729)");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			for (String line = null; (line = reader.readLine()) != null;) {
 			    result.append(line).append("\n");
@@ -117,6 +117,12 @@ public final class RTAPI {
 
 	//region Movie
 	
+	/**
+	 * Gets the movie information.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieInformation(int movieID) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieInformationUrl(movieID))));
@@ -128,6 +134,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie cast.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieCast(int movieID) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieCastUrl(movieID))));
@@ -139,6 +151,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie clips.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieClips(int movieID) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieClipsUrl(movieID))));
@@ -150,6 +168,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie reviews
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID))));
@@ -161,6 +185,13 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie ID
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID, int page) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID, page))));
@@ -172,6 +203,14 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie ID
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID, int pageLimit, int page) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID, pageLimit, page))));
@@ -183,6 +222,13 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID, RTReviewType type) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID, type))));
@@ -194,6 +240,14 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID, RTReviewType type, int page) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID, type, page))));
@@ -205,6 +259,15 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the movie reviews.
+	 * 
+	 * @param movieID The movie ID
+	 * @param type The review type
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseObject getMovieReviews(int movieID, RTReviewType type, int pageLimit, int page) {
 		try {
 			return new RTResponseObject(toJSON(makeApiCallGet(RTURLCreator.getMovieReviewsUrl(movieID, type, pageLimit, page))));
@@ -216,6 +279,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of similar movies.
+	 * 
+	 * @param movieID The movie ID
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getSimilarMovies(int movieID) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getSimilarMoviesUrl(movieID))));
@@ -227,6 +296,13 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of similar movies.
+	 * 
+	 * @param movieID The movie ID
+	 * @param limit The maximum number of results
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getSimilarMovies(int movieID, int limit) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getSimilarMoviesUrl(movieID, limit))));
@@ -238,6 +314,11 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of movies playing in theatres.
+	 * 
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getInTheatreMovies() {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl())));
@@ -249,6 +330,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of movies playing in theatres.
+	 * 
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getInTheatreMovies(int page) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(page))));
@@ -260,6 +347,13 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of movies playing in theatres.
+	 * 
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getInTheatreMovies(int pageLimit, int page) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(pageLimit, page))));
@@ -271,6 +365,11 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the entire list of movies playing in theatres.
+	 * 
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getAllInTheatreMovies() {
 		try {
 			RTResponseArray result = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getInTheatreMoviesUrl(100, 1))));
@@ -291,6 +390,12 @@ public final class RTAPI {
 		}
 	}
 	
+	
+	/**
+	 * Gets the list of upcoming movies.
+	 * 
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getUpcomingMovies() {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl())));
@@ -302,6 +407,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of upcoming movies.
+	 * 
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getUpcomingMovies(int page) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl(page))));
@@ -313,6 +424,13 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of upcoming movies.
+	 *
+	 * @param pageLimit The maximum number of results in a page
+	 * @param page The page number to retrieve
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getUpcomingMovies(int pageLimit, int page) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl(pageLimit, page))));
@@ -324,6 +442,11 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the entire list of upcoming movies.
+	 * 
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getAllUpcomingMovies() {
 		try {
 			RTResponseArray result = new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getUpcomingMoviesUrl(100, 1))));
@@ -344,6 +467,11 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of box office movies.
+	 *  
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getBoxOfficeMovies() {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getBoxOfficeMoviesUrl())));
@@ -355,6 +483,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of box office movies.
+	 * 
+	 * @param limit The maximum number of results
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getBoxOfficeMovies(int limit) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getBoxOfficeMoviesUrl(limit))));
@@ -366,6 +500,11 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of opening movies.
+	 * 
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getOpeningMovies() {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getOpeningMoviesUrl())));
@@ -377,6 +516,12 @@ public final class RTAPI {
 		}
 	}
 	
+	/**
+	 * Gets the list of opening movies.
+	 * 
+	 * @param limit The maximum number of results
+	 * @return The Rotten Tomatoes API response object
+	 */
 	public static RTResponseArray getOpeningMovies(int limit) {
 		try {
 			return new RTResponseArray(toJSON(makeApiCallGet(RTURLCreator.getOpeningMoviesUrl(limit))));

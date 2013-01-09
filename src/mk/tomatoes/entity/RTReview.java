@@ -29,31 +29,81 @@ import mk.tomatoes.utils.Log;
 import mk.tomatoes.core.RTConstants;
 import net.sf.json.JSONObject;
 
+/**
+ * Class that represents a critic review.
+ * 
+ * @author Mirko Polato
+ *
+ */
 public class RTReview extends RTEntity {
 
+	/**
+	 * The critic name.
+	 */
 	private String criticName;
+	
+	/**
+	 * The date.
+	 */
 	private Date date;
+	
+	/**
+	 * The Rottent Tomatoes freshness (fresh/rotten).
+	 */
 	private String freshness;
+	
+	/**
+	 * The review publication.
+	 */
 	private String publication;
+	
+	/**
+	 * The review text.
+	 */
 	private String quote;
 	
+	/**
+	 * Creates a new instance of RTReview based on the origin JSON object.
+	 * 
+	 * @param json the origin JSON object
+	 */
 	public RTReview(JSONObject json) {
 		super(json);
 		parseJSON(json);
 	}
 
+	/**
+	 * Gets the name of the critic.
+	 * 
+	 * @return The critic name
+	 */
 	public String getCriticName() {
 		return criticName;
 	}
 	
+	/**
+	 * Sets the critic name.
+	 * 
+	 * @param criticName The new critic name
+	 */
 	public void setCriticName(String criticName) {
 		this.criticName = criticName;
 	}
 	
+	/**
+	 * Gets the review date.
+	 * 
+	 * @return The review date
+	 */
 	public Date getDate() {
 		return date;
 	}
 	
+	/**
+	 * Sets the review date.
+	 * 
+	 * @param date The new review date
+	 */
 	public void setDate(String date) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -63,30 +113,65 @@ public class RTReview extends RTEntity {
 		}
 	}
 	
+	/**
+	 * Gets the review freshness.
+	 * 
+	 * @return The review freshness
+	 */
 	public String getFreshness() {
 		return freshness;
 	}
 	
+	/**
+	 * Sets the Rotten Tomatoes review freshness.
+	 * 
+	 * @param freshness The new review freshness
+	 */
 	public void setFreshness(String freshness) {
 		this.freshness = freshness;
 	}
 	
+	/**
+	 * Gets the review publication.
+	 * 
+	 * @return The review publication
+	 */
 	public String getPublication() {
 		return publication;
 	}
 	
+	/**
+	 * Sets the review publication.
+	 * 
+	 * @param publication The new review publication
+	 */
 	public void setPublication(String publication) {
 		this.publication = publication;
 	}
 	
+	/**
+	 * Gets the review quote.
+	 * 
+	 * @return The review quote
+	 */
 	public String getQuote() {
 		return quote;
 	}
 	
+	/**
+	 * Sets the review quote.
+	 * 
+	 * @param quote The new review quote
+	 */
 	public void setQuote(String quote) {
 		this.quote = quote;
 	}
 	
+	/**
+	 * Parses the origin JSON object.
+	 * 
+	 * @param json The origin JSON object
+	 */
 	private void parseJSON(JSONObject json) {
 		
 		if (json.has(RTConstants.CRITIC)) setCriticName(json.getString(RTConstants.CRITIC));

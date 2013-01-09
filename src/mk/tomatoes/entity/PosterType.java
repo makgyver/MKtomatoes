@@ -20,19 +20,53 @@
 
 package mk.tomatoes.entity;
 
+/**
+ * Enumertion with the possible poster types.
+ * 
+ * @author Mirko Polato
+ *
+ */
 public enum PosterType {
 
+	/**
+	 * Thumbnail poster.
+	 */
 	THUMBNAIL(0),
+	
+	/**
+	 * Profile poster.
+	 */
 	PROFILE(1),
+	
+	/**
+	 * Detailed poster.
+	 */
 	DETAILED(2),
+	
+	/**
+	 * Original poster.
+	 */
 	ORIGINAL(3);
 	
+	/**
+	 * Poster type integer value
+	 */
 	private int value;
 	
+	/**
+	 * Get the type value.
+	 * 
+	 * @return The type value
+	 */
 	public int getValue() {
 		return value;
 	}
 	
+	/**
+	 * Poster type constructor.
+	 * 
+	 * @param value The type value
+	 */
 	private PosterType(int value) {
 		this.value = value;
 	}

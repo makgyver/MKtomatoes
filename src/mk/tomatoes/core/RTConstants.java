@@ -48,6 +48,7 @@ public final class RTConstants {
 	public static final String GENRES = "genres";
 	public static final String ID = "id";
 	public static final String IMDB = "imdb";
+	public static final String IMDB_URL = "http://www.imdb.com/title/tt";
 	public static final String IN_THEATRES = "in_theatres";
 	public static final String JSON = ".json?";
 	public static final String LIMIT = "limit";

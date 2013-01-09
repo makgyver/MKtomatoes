@@ -20,23 +20,53 @@
 
 package mk.tomatoes.core;
 
+/**
+ * Enumeration with the possible review types.
+ * 
+ * @author Mirko Polato
+ *
+ */
 public enum RTReviewType {
 
+	/**
+	 * All the reviews.
+	 */
 	ALL("all"),
+	
+	/**
+	 * The DVD reviews.
+	 */
 	DVD("dvd"),
+	
+	/**
+	 * The top crtics reviews.
+	 */
 	TOP_CRITIC("top_critic");
 	
-	
+	/**
+	 * The enumeration value.
+	 */
 	private String value = "";
 	
 	public String getValue() {
 		return value;
 	}
 	
+	/**
+	 * The enumeration constructor.
+	 * 
+	 * @param value The enum value
+	 */
 	private RTReviewType(String value) {
 		this.value = value;
 	}
 	
+	/**
+	 * Gets the review type by its value.
+	 * 
+	 * @param value The enum value
+	 * @return The RTReviewType enumeration
+	 */
 	public static RTReviewType getReviewType(String value) {
 	    
 	    for (RTReviewType s : values()) {

@@ -38,7 +38,6 @@ import mk.tomatoes.response.RTResponseException;
 import mk.tomatoes.response.RTResponseObject;
 import mk.tomatoes.utils.Log;
 import mk.tomatoes.utils.Pair;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -84,7 +83,7 @@ public class RTMovie extends RTEntity {
 	/**
 	 * The movie IMDb (imdb.com) ID.
 	 */
-	private String imdbDd;
+	private String imdbId;
 	
 	/**
 	 * The movie Rotten Tomatoes ID.
@@ -215,12 +214,12 @@ public class RTMovie extends RTEntity {
 		this.plot = plot;
 	}
 
-	public String getImdbDd() {
-		return imdbDd;
+	public String getImdbId() {
+		return imdbId;
 	}
 
-	public void setImdbDd(String imdbDd) {
-		this.imdbDd = imdbDd;
+	public void setImdbId(String imdbId) {
+		this.imdbId = imdbId;
 	}
 
 	public int getId() {
@@ -321,8 +320,21 @@ public class RTMovie extends RTEntity {
 		this.reviews = reviews;
 	}
 	
+	public URL getIMDBLink() {
+		try {
+			return new URL(RTConstants.IMDB_URL + getImdbId());
+		} catch (MalformedURLException e) {
+			return null;
+		}
+	}
+	
 	//endregion
 
+	/**
+	 * Parses the origin JSON object.
+	 * 
+	 * @param json The origin JSON object
+	 */
 	private void parseJSON(JSONObject json) {
 		
 		if (json.has(RTConstants.ID)) setId(json.getInt(RTConstants.ID));
@@ -417,7 +429,7 @@ public class RTMovie extends RTEntity {
 		}
 		
 		if (json.has(RTConstants.ALTERNATE_IDS)) {
-			setImdbDd(json.getJSONObject(RTConstants.ALTERNATE_IDS).getString(RTConstants.IMDB));
+			setImdbId(json.getJSONObject(RTConstants.ALTERNATE_IDS).getString(RTConstants.IMDB));
 		}
 		
 	}
