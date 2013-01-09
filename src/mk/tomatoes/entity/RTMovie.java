@@ -26,9 +26,9 @@ public class RTMovie extends RTEntity {
 	private int criticsScore;
 	
 	/**
-	 * The movie audiance score.
+	 * The movie audience score.
 	 */
-	private int audianceScore;
+	private int audienceScore;
 	
 	/**
 	 * The movie MPAA rating.
@@ -142,12 +142,12 @@ public class RTMovie extends RTEntity {
 		this.criticsScore = criticsScore;
 	}
 
-	public int getAudianceScore() {
-		return audianceScore;
+	public int getAudienceScore() {
+		return audienceScore;
 	}
 
-	public void setAudianceScore(int audianceScore) {
-		this.audianceScore = audianceScore;
+	public void setAudienceScore(int audienceScore) {
+		this.audienceScore = audienceScore;
 	}
 
 	public String getMpaa() {
@@ -337,7 +337,7 @@ public class RTMovie extends RTEntity {
 		if (json.has(RTConstants.RATINGS)) {
 			JSONObject jobj = json.getJSONObject(RTConstants.RATINGS);
 			if (jobj.has(RTConstants.CRITICS_SCORE)) setCriticsScore(jobj.getInt(RTConstants.CRITICS_SCORE));
-			if (jobj.has(RTConstants.AUDIANCE_SCORE)) setAudianceScore(jobj.getInt(RTConstants.AUDIANCE_SCORE));
+			if (jobj.has(RTConstants.AUDIENCE_SCORE)) setAudienceScore(jobj.getInt(RTConstants.AUDIENCE_SCORE));
 		}
 		
 		if (json.has(RTConstants.POSTERS)) {

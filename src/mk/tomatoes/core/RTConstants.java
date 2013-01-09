@@ -30,7 +30,7 @@ public final class RTConstants {
 
 	public static final String ALTERNATE_IDS = "alternate_ids";
 	public static final String API_KEY = "apikey";
-	public static final String AUDIANCE_SCORE = "audiance_score";
+	public static final String AUDIENCE_SCORE = "audience_score";
 	public static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
 	public static final String BOX_OFFICE = "box_office";
 	public static final String CAST = "cast";
