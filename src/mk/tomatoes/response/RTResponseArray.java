@@ -21,8 +21,8 @@
 package mk.tomatoes.response;
 
 import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import mk.tomatoes.core.RTConstants;
 import net.sf.json.JSONArray;
@@ -33,7 +33,7 @@ public class RTResponseArray extends RTResponse {
 	/**
 	 * The JSON objects list contained in the response.
 	 */
-	private Set<JSONObject> data = Collections.synchronizedSet(new LinkedHashSet<JSONObject>());
+	private List<JSONObject> data = Collections.synchronizedList(new LinkedList<JSONObject>());
 	
 	/**
 	 * The total number of the retrieved results.
@@ -78,7 +78,7 @@ public class RTResponseArray extends RTResponse {
 	 * 
 	 * @return the list of JSON object
 	 */
-	public Set<JSONObject> getData() {
+	public List<JSONObject> getData() {
 		return data;
 	}
 	

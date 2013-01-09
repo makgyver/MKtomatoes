@@ -27,8 +27,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import mk.tomatoes.core.RTAPI;
 import mk.tomatoes.core.RTConstants;
@@ -118,27 +118,27 @@ public class RTMovie extends RTEntity {
 	/**
 	 * The movie cast.
 	 */
-	private Set<Pair<String, Set<String>>> cast = Collections.synchronizedSet(new LinkedHashSet<Pair<String, Set<String>>>());
+	private  List<Pair<String, List<String>>> cast = Collections.synchronizedList(new LinkedList<Pair<String, List<String>>>());
 	
 	/**
 	 * The movie directors.
 	 */
-	private Set<String> directors = Collections.synchronizedSet(new LinkedHashSet<String>());
+	private List<String> directors = Collections.synchronizedList(new LinkedList<String>());
 	
 	/**
 	 * The movie genres.
 	 */
-	private Set<String> genres = Collections.synchronizedSet(new LinkedHashSet<String>());
+	private List<String> genres = Collections.synchronizedList(new LinkedList<String>());
 	
 	/**
 	 * The movie clips.
 	 */
-	private Set<RTClip> clips = Collections.synchronizedSet(new LinkedHashSet<RTClip>());
+	private List<RTClip> clips = Collections.synchronizedList(new LinkedList<RTClip>());
 	
 	/**
 	 * The movie reviews.
 	 */
-	private Set<RTReview> reviews = Collections.synchronizedSet(new LinkedHashSet<RTReview>());
+	private List<RTReview> reviews = Collections.synchronizedList(new LinkedList<RTReview>());
 	
 	//endregion
 	
@@ -280,43 +280,43 @@ public class RTMovie extends RTEntity {
 		this.runtime = runtime;
 	}
 
-	public Set<Pair<String, Set<String>>> getCast() {
+	public List<Pair<String, List<String>>> getCast() {
 		return cast;
 	}
 
-	public void setCast(Set<Pair<String, Set<String>>> cast) {
+	public void setCast(List<Pair<String, List<String>>> cast) {
 		this.cast = cast;
 	}
 
-	public Set<String> getDirectors() {
+	public List<String> getDirectors() {
 		return directors;
 	}
 
-	public void setDirectors(Set<String> directors) {
+	public void setDirectors(List<String> directors) {
 		this.directors = directors;
 	}
 
-	public Set<String> getGenres() {
+	public List<String> getGenres() {
 		return genres;
 	}
 
-	public void setGenres(Set<String> genres) {
+	public void setGenres(List<String> genres) {
 		this.genres = genres;
 	}
 
-	public Set<RTClip> getClips() {
+	public List<RTClip> getClips() {
 		return clips;
 	}
 
-	public void setClips(Set<RTClip> clips) {
+	public void setClips(List<RTClip> clips) {
 		this.clips = clips;
 	}
 
-	public Set<RTReview> getReviews() {
+	public List<RTReview> getReviews() {
 		return reviews;
 	}
 
-	public void setReviews(Set<RTReview> reviews) {
+	public void setReviews(List<RTReview> reviews) {
 		this.reviews = reviews;
 	}
 	
@@ -408,7 +408,7 @@ public class RTMovie extends RTEntity {
 				
 				String name =  jobj.getString(RTConstants.NAME);
 				
-				Set<String> chars = new LinkedHashSet<String>();
+				List<String> chars = new LinkedList<String>();
 				if (jobj.has(RTConstants.CHARACTERS)) {
 					JSONArray charsArray = jobj.getJSONArray(RTConstants.CHARACTERS);
 					
@@ -417,7 +417,7 @@ public class RTMovie extends RTEntity {
 					}
 				}
 				
-				cast.add(new Pair<String, Set<String>>(name, chars));
+				cast.add(new Pair<String, List<String>>(name, chars));
 			}
 		}
 		
@@ -447,7 +447,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<Pair<String, Set<String>>> getFullCast(int movieID) throws RTResponseException {
+	public static List<Pair<String, List<String>>> getFullCast(int movieID) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieCast(movieID);
 		
@@ -456,7 +456,7 @@ public class RTMovie extends RTEntity {
 		} else {
 			
 			JSONArray array = response.getData().getJSONArray(RTConstants.CAST);
-			Set<Pair<String, Set<String>>> result = new LinkedHashSet<Pair<String,Set<String>>>();
+			List<Pair<String, List<String>>> result = new LinkedList<Pair<String,List<String>>>();
 			
 			for (Object obj : array) {
 				
@@ -464,21 +464,21 @@ public class RTMovie extends RTEntity {
 				
 				String name = jobj.getString(RTConstants.NAME);
 				
-				Set<String> charsArray = new LinkedHashSet<String>();
+				List<String> charsArray = new LinkedList<String>();
 				if (jobj.has(RTConstants.CHARACTERS)) {
 					JSONArray chars = jobj.getJSONArray(RTConstants.CHARACTERS);
 					for(Object c : chars) {
 						charsArray.add((String) c);
 					}
 				}
-				result.add(new Pair<String, Set<String>>(name, charsArray));
+				result.add(new Pair<String, List<String>>(name, charsArray));
 			}
 			
 			return result;
 		}
 	}
 	
-	public static Set<RTClip> getClips(int movieID) throws RTResponseException {
+	public static List<RTClip> getClips(int movieID) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieClips(movieID);
 		
@@ -486,7 +486,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTClip> result = new LinkedHashSet<RTClip>();
+			List<RTClip> result = new LinkedList<RTClip>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.CLIPS);
 			for (Object obj : array) {
 				result.add(new RTClip((JSONObject) obj));
@@ -496,7 +496,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID);
 		
@@ -504,7 +504,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -514,7 +514,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID, int page) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID, int page) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, page);
 		
@@ -522,7 +522,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -532,7 +532,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID, int pageLimit, int page) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID, int pageLimit, int page) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, pageLimit, page);
 		
@@ -540,7 +540,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -550,7 +550,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID, RTReviewType type) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID, RTReviewType type) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, type);
 		
@@ -558,7 +558,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -568,7 +568,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID, RTReviewType type, int page) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID, RTReviewType type, int page) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, type, page);
 		
@@ -576,7 +576,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -586,7 +586,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getReviews(int movieID, RTReviewType type, int pageLimit, int page) throws RTResponseException {
+	public static List<RTReview> getReviews(int movieID, RTReviewType type, int pageLimit, int page) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, type, pageLimit, page);
 		
@@ -594,7 +594,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -604,7 +604,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTReview> getAllReviews(int movieID, RTReviewType type) throws RTResponseException {
+	public static List<RTReview> getAllReviews(int movieID, RTReviewType type) throws RTResponseException {
 		
 		RTResponseObject response = RTAPI.getMovieReviews(movieID, type, 100, 1);
 		
@@ -612,7 +612,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTReview> result = new LinkedHashSet<RTReview>();
+			List<RTReview> result = new LinkedList<RTReview>();
 			JSONArray array = response.getData().getJSONArray(RTConstants.REVIEWS);
 			for (Object obj : array) {
 				result.add(new RTReview((JSONObject) obj));
@@ -628,7 +628,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getSimilarMovies(int movieID) throws RTResponseException {
+	public static List<RTMovie> getSimilarMovies(int movieID) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getSimilarMovies(movieID);
 		
@@ -636,7 +636,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -646,7 +646,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 
-	public static Set<RTMovie> getSimilarMovies(int movieID, int limit) throws RTResponseException {
+	public static List<RTMovie> getSimilarMovies(int movieID, int limit) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getSimilarMovies(movieID, limit);
 		
@@ -654,7 +654,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -664,7 +664,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getInTheatreMovies() throws RTResponseException {
+	public static List<RTMovie> getInTheatreMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getInTheatreMovies();
 		
@@ -672,7 +672,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -682,7 +682,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getInTheatreMovies(int page) throws RTResponseException {
+	public static List<RTMovie> getInTheatreMovies(int page) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getInTheatreMovies(page);
 		
@@ -690,7 +690,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -700,7 +700,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 
-	public static Set<RTMovie> getInTheatreMovies(int pageLimit, int page) throws RTResponseException {
+	public static List<RTMovie> getInTheatreMovies(int pageLimit, int page) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getInTheatreMovies(pageLimit, page);
 		
@@ -708,7 +708,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -718,7 +718,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getAllInTheatreMovies() throws RTResponseException {
+	public static List<RTMovie> getAllInTheatreMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getAllInTheatreMovies();
 		
@@ -726,7 +726,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -736,7 +736,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getBoxOfficeMovies() throws RTResponseException {
+	public static List<RTMovie> getBoxOfficeMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getBoxOfficeMovies();
 		
@@ -744,7 +744,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -754,7 +754,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 
-	public static Set<RTMovie> getBoxOfficeMovies(int limit) throws RTResponseException {
+	public static List<RTMovie> getBoxOfficeMovies(int limit) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getBoxOfficeMovies(limit);
 		
@@ -762,7 +762,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -772,7 +772,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getUpcomingMovies() throws RTResponseException {
+	public static List<RTMovie> getUpcomingMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getUpcomingMovies();
 		
@@ -780,7 +780,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -790,7 +790,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getUpcomingMovies(int page) throws RTResponseException {
+	public static List<RTMovie> getUpcomingMovies(int page) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getUpcomingMovies(page);
 		
@@ -798,7 +798,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -808,7 +808,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 
-	public static Set<RTMovie> getUpcomingMovies(int pageLimit, int page) throws RTResponseException {
+	public static List<RTMovie> getUpcomingMovies(int pageLimit, int page) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getUpcomingMovies(pageLimit, page);
 		
@@ -816,7 +816,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -826,7 +826,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getAllUpcomingMovies() throws RTResponseException {
+	public static List<RTMovie> getAllUpcomingMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getAllUpcomingMovies();
 		
@@ -834,7 +834,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -844,7 +844,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> getOpeningMovies() throws RTResponseException {
+	public static List<RTMovie> getOpeningMovies() throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getOpeningMovies();
 		
@@ -852,7 +852,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -862,7 +862,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 
-	public static Set<RTMovie> getOpeningMovies(int limit) throws RTResponseException {
+	public static List<RTMovie> getOpeningMovies(int limit) throws RTResponseException {
 
 		RTResponseArray response = RTAPI.getOpeningMovies(limit);
 		
@@ -870,7 +870,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -884,7 +884,7 @@ public class RTMovie extends RTEntity {
 	
 	//region Search methods
 	
-	public static Set<RTMovie> searchByTitle(String title) throws RTResponseException {
+	public static List<RTMovie> searchByTitle(String title) throws RTResponseException {
 		
 		RTResponseArray response = RTAPI.searchMovieByTitle(title);
 		
@@ -892,7 +892,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -902,7 +902,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> searchByTitle(String title, int page) throws RTResponseException {
+	public static List<RTMovie> searchByTitle(String title, int page) throws RTResponseException {
 		
 		RTResponseArray response = RTAPI.searchMovieByTitle(title, page);
 		
@@ -910,7 +910,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -920,7 +920,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> searchByTitle(String title, int pageLimit, int page) throws RTResponseException {
+	public static List<RTMovie> searchByTitle(String title, int pageLimit, int page) throws RTResponseException {
 		
 		RTResponseArray response = RTAPI.searchMovieByTitle(title, pageLimit, page);
 		
@@ -928,7 +928,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
@@ -938,7 +938,7 @@ public class RTMovie extends RTEntity {
 		}
 	}
 	
-	public static Set<RTMovie> fullSearchByTitle(String title) throws RTResponseException {
+	public static List<RTMovie> fullSearchByTitle(String title) throws RTResponseException {
 		
 		RTResponseArray response = RTAPI.fullSearchMovieByTitle(title);
 		
@@ -946,7 +946,7 @@ public class RTMovie extends RTEntity {
 			throw new RTResponseException(response.getStatus());
 		} else {
 			
-			Set<RTMovie> result = new LinkedHashSet<RTMovie>();
+			List<RTMovie> result = new LinkedList<RTMovie>();
 			
 			for (JSONObject json : response.getData()) {
 				result.add(new RTMovie(json));
