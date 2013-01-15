@@ -341,7 +341,13 @@ public class RTMovie extends RTEntity {
 		if (json.has(RTConstants.YEAR)) setYear(json.getInt(RTConstants.YEAR));
 		if (json.has(RTConstants.TITLE)) setTitle(json.getString(RTConstants.TITLE));
 		if (json.has(RTConstants.MPAA_RATING)) setMpaa(json.getString(RTConstants.MPAA_RATING));
-		if (json.has(RTConstants.RUNTIME)) setRuntime(json.getInt(RTConstants.RUNTIME));
+		if (json.has(RTConstants.RUNTIME)) {
+			try {
+				setRuntime(json.getInt(RTConstants.RUNTIME));
+			} catch (Exception ex) {
+				Log.print(ex);
+			}
+		}
 		if (json.has(RTConstants.CONSENSUS)) setCriticsConsensus(json.getString(RTConstants.CONSENSUS));
 		if (json.has(RTConstants.SYNOPSIS)) setPlot(json.getString(RTConstants.SYNOPSIS));
 		if (json.has(RTConstants.MOVIE_STUDIO)) setStudio(json.getString(RTConstants.MOVIE_STUDIO));

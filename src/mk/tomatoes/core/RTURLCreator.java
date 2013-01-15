@@ -456,7 +456,7 @@ public final class RTURLCreator {
 					RTConstants.MOVIES +
 				   	RTConstants.JSON +
 					pair(RTConstants.API_KEY, getApiKey()) + 
-					param(pair(RTConstants.QUERY, title)));
+					param(pair(RTConstants.QUERY, title.replace(" ", "+"))));
 	}
 	
 	/**
@@ -472,7 +472,7 @@ public final class RTURLCreator {
 					RTConstants.MOVIES +
 					RTConstants.JSON +
 					pair(RTConstants.API_KEY, getApiKey()) + 
-					param(pair(RTConstants.QUERY, title)) + 
+					param(pair(RTConstants.QUERY, title.replace(" ", "+"))) + 
 					param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
 	
@@ -490,7 +490,7 @@ public final class RTURLCreator {
 					RTConstants.MOVIES +
 					RTConstants.JSON +
 					pair(RTConstants.API_KEY, getApiKey()) + 
-					param(pair(RTConstants.QUERY, title)) + 
+					param(pair(RTConstants.QUERY, title.replace(" ", "+"))) + 
 					param(pair(RTConstants.PAGE_LIMIT, String.valueOf(pageLimit))) +
 					param(pair(RTConstants.PAGE, String.valueOf(page))));
 	}
